@@ -20,7 +20,7 @@ const AdminDashboard = () => {
   const [showStatistics, setShowStatistics] = useState(false);
   const [selectedCompany] = useState("all");
   const [selectedTitle] = useState("all");
-  const [selectedContactPerson] = useState("all");
+  const [selectedContactPerson] = useState("all");  
 
   useEffect(() => {
     fetchVisitors();

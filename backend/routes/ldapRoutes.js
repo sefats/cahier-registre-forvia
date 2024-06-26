@@ -3,7 +3,7 @@ const router = express.Router();
 const ldap = require("ldapjs");
 
 const ldapClient = ldap.createClient({
-  url: "ldap://10.60.194.91",
+  url: "ldap://10.60.194.92",
 });
 
 const adminDN = "7FRALJRECEPTION@ls.ege.ds";

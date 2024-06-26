@@ -1,12 +1,12 @@
 const express = require('express');
 const sequelize = require('./config/db');
 const dotenv = require('dotenv');
-const ldap = require('ldapjs');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const visitorRoutes = require('./routes/visitorRoutes');
 const memberRoutes = require('./routes/memberRoutes');
 const ldapRoutes = require('./routes/ldapRoutes');
+const printRoutes = require('./routes/printRoutes'); 
 
 dotenv.config();
 
@@ -20,7 +20,8 @@ app.use(cors());
 app.use('/api/auth', authRoutes);
 app.use('/api/visitors', visitorRoutes);
 app.use('/api/members', memberRoutes);
-app.use('/api/ldap',ldapRoutes)
+app.use('/api/ldap', ldapRoutes);
+app.use('/api/print', printRoutes); 
 
 // Synchroniser avec la base de données MySQL
 sequelize.sync()
