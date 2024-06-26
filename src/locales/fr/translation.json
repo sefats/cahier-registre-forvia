@@ -1,0 +1,40 @@
+{
+    "welcome": "Bienvenue",
+    "login": "Se connecter",
+    "logout": "Déconnexion",
+    "admin_dashboard": "Tableau de bord Admin",
+    "visitor_registration": "Enregistrement Visiteur",
+    "member_registration": "Enregistrement Membre",
+    "search_member": "Recherche Membre",
+    "search": "Rechercher",
+    "name": "Nom",
+    "firstname": "Prénom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "start_time": "Heure de début",
+    "end_time": "Heure de fin",
+    "company": "Entreprise",
+    "contact_person": "Personne de contact",
+    "save_visit": "Enregistrer la visite",
+    "success_message": "Visiteur ajouté avec succès!",
+    "delete_confirmation": "Êtes-vous sûr de vouloir supprimer cette visite?",
+    "visitor": "Visiteur",
+    "member": "Membre",
+    "sidentifier": "S'identifier",
+    "adresse-email": "Adresse e-mail",
+    "poste":"Poste",
+    "office": "Bureau",
+    "success_membre": "Membre ajouté avec succès!",
+    "all": "Tout",
+    "yes":"Oui",
+    "no":"Non",
+    "actions": "Actions",
+    "delete":"Supprimer",
+    "statistiques":"Statistiques",
+    "average":"Nombre moyen de visites par jour"
+
+
+
+
+  }
+  

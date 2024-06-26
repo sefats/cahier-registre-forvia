@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f7f7f7;
+}
+
+.visitor-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4vh 5vw;
+  margin-top: 10%;
+
+}
+
+.nav-divider {
+  width: 100%;
+  height: 4px;
+  background-color: #0B2FED;
+  margin-bottom: 4vh;
+
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.visitor-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  background-color: white;
+  padding: 4vh 5vw;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(252, 250, 250, 0.1);
+  transition: box-shadow 0.3s ease;
+
+}
+
+.visitor-form:hover {
+  box-shadow: 0 6px 16px rgba(252, 250, 250, 0.1);
+}
+
+.visitor-form h2 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 4vh;
+  font-size: 3vh;
+  color: #0B2FED;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 3vh;
+
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 1vh;
+  font-weight: 700;
+  font-size: 2vh;
+  color: #333;
+
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1.5vh;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 2vh;
+  transition: border-color 0.3s;
+
+}
+
+.form-group input:focus {
+  border-color: #0B2FED;
+  outline: none;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 2vh;
+  background-color: #0B2FED;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 2.5vh;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0033A0;
+}
+
+.popup {
+  position: fixed;
+  top: 20vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #0B2FED;
+  color: white;
+  padding: 3vh 5vw;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: box-shadow 0.3s ease;
+}
+
+.popup:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}

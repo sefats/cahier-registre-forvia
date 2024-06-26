@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.home-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    overflow: hidden;
+}
+
+
+
+.home-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/src/images/background-forvia.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh 5vw;
+    background-color: white;
+    width: 100%;
+    height: 13vh;
+}
+
+.login-button {
+    background-color: #0B2FED;
+    color: white;
+    border: none;
+    padding: 1vh 2vw;
+    border-radius: 1vh;
+    cursor: pointer;
+    margin-left: 2vw;
+    font-size: 2.3vh;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0033A0;
+}
+
+.logo {
+    height: 7vh;
+    cursor: pointer; 
+}
+
+.language-section {
+    display: flex;
+    align-items: center;
+    font-size: 1vh;
+    color: black;
+}
+
+.location-text {
+    margin-right: 2vw;
+    font-size: 3vh;
+}
+
+.language-selector {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 0.5vh 1vw;
+    border-radius: 2vh;
+    cursor: pointer;
+    font-size: 2vh;
+}
+
+.selected-language {
+    display: flex;
+    align-items: center;
+}
+
+.arrow {
+    font-size: 2.5vh;
+    color: grey;
+    margin-left: 0.5vw;
+    transition: transform 0.3s ease;
+}
+
+.arrow.open {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 0.5vh;
+    box-shadow: 0 0.4vh 0.6vh rgba(0, 0, 0, 0.1);
+    margin-top: 1vh;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+}
+
+.dropdown-menu li {
+    padding: 1vh 2vw;
+    cursor: pointer;
+    font-size: 2.5vh;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f1f1f1;
+}
+
+.nav-divider {
+    width: 100%;
+    height: 0.5vh;
+    background-color: #0B2FED;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-grow: 1;
+    padding: 5vh 5vw;
+    margin-top: 9%;
+}
+
+.section {
+    text-align: left;
+    flex: 1;
+    margin: 0 5vw;
+}
+
+.visitor-section {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 11vh;
+    margin-left: 5vw;
+}
+
+.member-section {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 11vh;
+}
+
+
+.section h2 {
+    color: #0B2FED;
+    max-width: 70vh;
+    font-size: 6vh;
+    font-weight: 700;
+    margin: 0 0 2vh;
+}
+
+.section p {
+    font-size: 3vh;
+    font-weight: 700;
+    margin: 7vh 0 3vh 1vw;
+}
+
+.visitor-button, .member-button {
+    background-color: #0B2FED;
+    color: white;
+    border: none;
+    padding: 2vh 5vw;
+    border-radius: 1vh;
+    cursor: pointer;
+    font-size: 2.7vh;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    margin-top: 12vh;
+    margin-left: 13vw;
+}
+
+.visitor-button:hover, .member-button:hover {
+    background-color: #0033A0;
+}
+
+.divider {
+    width: 0.4vw;
+    background-color: #0B2FED;
+    height: 80%;
+    align-self: center;
+}
