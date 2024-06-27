@@ -16,7 +16,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.7); /* Couleur blanche avec 70% d'opacité */
+    background: rgba(255, 255, 255, 0.8); 
     z-index: -1;
 }
 
@@ -35,7 +35,7 @@ body::before {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin-top: 15%; 
-    margin-left: 35%;
+    margin-left: 10%;
 }
 
 .form-group {
@@ -43,7 +43,7 @@ body::before {
     text-align: left;
     margin-left: auto;
     margin-right: auto;
-    width: 90%; /* Centrer les champs */
+    width: 90%; 
 }
 
 .form-group label {
@@ -70,7 +70,7 @@ body::before {
 }
 
 .submit-button {
-    width: 90%; /* Ajuster la largeur pour centrer */
+    width: 90%; 
     padding: 15px;
     background-color: #0B2FED;
     color: white;

@@ -11,7 +11,6 @@ const Navbar = () => {
     const userRole = localStorage.getItem('role');
     const { t } = useTranslation();
 
-
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('role');
@@ -22,14 +21,21 @@ const Navbar = () => {
         <header className="header">
             <div className="navbar-left">
                 {isLoggedIn ? (
-                    <button className="logout-button" onClick={handleLogout}>{t('logout')} </button>
+                    <>
+                        <button className="logout-button" onClick={handleLogout}>{t('logout')}</button>
+                        {userRole === 'admin' && (
+                            <button className="admin-button" onClick={() => navigate('/admin')}>Admin</button>
+                        )}
+                        {userRole === 'admin' && (
+                            <Link to="/create-user">
+                                <button className="login-button">{t('add_user')}</button>
+                            </Link>
+                        )}
+                    </>
                 ) : (
                     <Link to="/login">
-                        <button className="login-button">{t('login')} </button>
+                        <button className="login-button">{t('login')}</button>
                     </Link>
-                )}
-                {isLoggedIn && userRole === 'admin' && (
-                    <button className="admin-button" onClick={() => navigate('/admin')}>Admin</button>
                 )}
             </div>
             <img src={logo} alt="Forvia Logo" className="logo" onClick={() => navigate('/')} />

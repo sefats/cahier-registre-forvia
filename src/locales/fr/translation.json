@@ -31,7 +31,11 @@
     "actions": "Actions",
     "delete":"Supprimer",
     "statistiques":"Statistiques",
-    "average":"Nombre moyen de visites par jour"
+    "average":"Nombre moyen de visites par jour",
+    "add_user":"Ajouter utilisateur",
+    "username":"Identifiant",
+    "password":"Mot de passe",
+    "create_user":"Créer un utilisateur"
 
 
 

@@ -14,7 +14,7 @@ const MemberLogin = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/ldap/search", {
+      const response = await fetch("http://fraljapp0002:5000/api/ldap/search", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +48,7 @@ const MemberLogin = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/members/add", {
+      const response = await fetch("http://fraljapp0002:5000/api/members/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

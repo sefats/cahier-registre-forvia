@@ -27,7 +27,7 @@ const VisitorForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/visitors/add", {
+      const response = await fetch("http://fraljapp0002:5000/api/visitors/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

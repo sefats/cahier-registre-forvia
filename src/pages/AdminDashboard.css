@@ -4,7 +4,7 @@
 }
 
 .title {
-  font-size: 32px; /* Augmentation de la taille du titre */
+  font-size: 32px; 
   margin-bottom: 20px;
 }
 
@@ -17,15 +17,15 @@
 
 .filter-container select,
 .filter-container input {
-  padding: 10px; /* Augmentation de la taille des boutons de filtre */
-  font-size: 16px; /* Augmentation de la taille du texte des filtres */
+  padding: 10px; 
+  font-size: 16px;
 }
 
 .statistics-toggle {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 16px; /* Augmentation de la taille du texte */
+  font-size: 16px; 
 }
 
 .visits-table {
@@ -77,13 +77,13 @@
 }
 
 .charts-container canvas {
-  max-width: 45%; /* Réduction de la taille des graphiques */
-  max-height: 300px; /* Limite la hauteur des graphiques */
-  flex: 1 1 45%; /* Flex pour permettre aux graphiques de s'adapter */
+  max-width: 45%; 
+  max-height: 300px;
+  flex: 1 1 45%; 
 }
 
 @media (max-width: 768px) {
   .charts-container canvas {
-    max-width: 100%; /* Réduire la taille des graphiques pour les petits écrans */
+    max-width: 100%;
   }
 }

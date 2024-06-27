@@ -5,6 +5,7 @@ import VisitorForm from './pages/VisitorForm';
 import AdminDashboard from './pages/AdminDashboard';
 import Login from './pages/Login';
 import MemberLogin from './pages/MemberLogin';
+import CreateUser from './pages/CreateUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 import './i18n'; 
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/visitor" element={<VisitorForm />} />
         <Route path="/member" element={<MemberLogin />} />
+        <Route path="/create-user" element={<CreateUser />} />
         <Route
           path="/admin"
           element={

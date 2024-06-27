@@ -27,27 +27,6 @@ exports.addMember = async (req, res) => {
       startTime: new Date(startTime),
       endTime: new Date(endTime),
     });
-
-    // Générer les commandes ZPL
-    const response = await axios.post(
-      "http://localhost:5000/api/print/generate-zpl",
-      {
-        name: sn,
-        firstname: givenName,
-        email: mail,
-        phone,
-        entreprise: office,
-        contactPerson,
-        startTime,
-        endTime,
-      }
-    );
-
-    const { zpl } = response.data;
-
-    // Envoyer les commandes ZPL à l'imprimante
-    sendZPLToPrinter(zpl);
-
     res.status(201).json({
       message: "Member visit added and label printed successfully",
       member,

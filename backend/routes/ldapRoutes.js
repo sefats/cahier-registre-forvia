@@ -3,7 +3,7 @@ const router = express.Router();
 const ldap = require("ldapjs");
 
 const ldapClient = ldap.createClient({
-  url: "ldap://10.60.194.92",
+  url: 'ldap://10.60.194.91:389',
 });
 
 const adminDN = "7FRALJRECEPTION@ls.ege.ds";
@@ -62,22 +62,5 @@ router.post("/search", (req, res) => {
   });
 });
 
-router.post("/add", async (req, res) => {
-  try {
-    const member = await Member.create(req.body);
-    res.status(200).json(member);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to add member" });
-  }
-});
-
-router.get("/list", async (req, res) => {
-  try {
-    const members = await Member.findAll();
-    res.status(200).json(members);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch members" });
-  }
-});
 
 module.exports = router;

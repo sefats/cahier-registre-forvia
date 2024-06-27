@@ -4,7 +4,9 @@ import { useTranslation } from "react-i18next";
 import VisitsChart from "../components/VisitsChart";
 import VisitorMemberComparisonChart from "../components/VisitorMemberComparisonChart";
 import MonthlyStatsChart from "../components/MonthlyStatsChart";
-import AverageVisitsPerDay from "../components/AverageVisitsPerDay";
+import MonthlyVisitorsByOfficeChart from "../components/MonthlyVisitorsByOfficeChart";
+import TotalVisitorsByOfficePieChart from "../components/TotalVisitorsByOfficePieChart";
+
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
@@ -20,7 +22,12 @@ const AdminDashboard = () => {
   const [showStatistics, setShowStatistics] = useState(false);
   const [selectedCompany] = useState("all");
   const [selectedTitle] = useState("all");
-  const [selectedContactPerson] = useState("all");  
+  const [selectedContactPerson] = useState("all");
+  const [monthlyVisitorsByOfficeData, setMonthlyVisitorsByOfficeData] =
+    useState([]);
+  const [totalVisitorsByOfficeData, setTotalVisitorsByOfficeData] = useState(
+    []
+  );
 
   useEffect(() => {
     fetchVisitors();
@@ -29,7 +36,7 @@ const AdminDashboard = () => {
 
   const fetchVisitors = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/visitors");
+      const response = await fetch("http://fraljapp0002:5000/api/visitors");
       const data = await response.json();
       setVisitors(data);
     } catch (error) {
@@ -39,7 +46,7 @@ const AdminDashboard = () => {
 
   const fetchMembers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/members");
+      const response = await fetch("http://fraljapp0002:5000/api/members");
       const data = await response.json();
       setMembers(data);
     } catch (error) {
@@ -49,7 +56,7 @@ const AdminDashboard = () => {
 
   const handleDeleteVisitor = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/visitors/${id}`, {
+      const response = await fetch(`http://fraljapp0002:5000/api/visitors/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {
@@ -65,7 +72,7 @@ const AdminDashboard = () => {
 
   const handleDeleteMember = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/members/${id}`, {
+      const response = await fetch(`http://fraljapp0002:5000/api/members/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {
@@ -245,28 +252,112 @@ const AdminDashboard = () => {
     };
   };
 
-  const calculateAverageVisitsPerDay = () => {
-    let dataSource =
-      filter === "visitors"
-        ? visitors
-        : filter === "members"
-        ? members
-        : [...visitors, ...members];
-    const totalDays = new Set(
-      dataSource.map((entry) => new Date(entry.startTime).toDateString())
-    );
-    const averageVisitsPerDay = dataSource.length / totalDays.size;
-
-    return averageVisitsPerDay.toFixed(2);
-  };
-
   const weeklyVisitsData = prepareWeeklyVisitsData();
   const visitorMemberComparisonData = prepareVisitorMemberComparisonData();
   const monthlyStatsData = prepareMonthlyStats();
-  const averageVisitsPerDay = calculateAverageVisitsPerDay();
+
+  const prepareMonthlyVisitorsByOfficeData = () => {
+    const monthOfficeCounts = {};
+
+    members.forEach((member) => {
+      const month = new Date(member.startTime).toLocaleString("default", {
+        month: "long",
+      });
+      const office = member.office;
+
+      if (!monthOfficeCounts[month]) {
+        monthOfficeCounts[month] = {};
+      }
+      if (!monthOfficeCounts[month][office]) {
+        monthOfficeCounts[month][office] = 0;
+      }
+      monthOfficeCounts[month][office]++;
+    });
+
+    const sortedMonths = Object.keys(monthOfficeCounts).sort(
+      (a, b) => new Date(`01 ${a} 2000`) - new Date(`01 ${b} 2000`)
+    );
+
+    const labels = sortedMonths;
+    const datasets = [];
+
+    // Generate dynamic colors for offices
+    const officeColors = {};
+
+    Object.keys(monthOfficeCounts).forEach((month) => {
+      Object.keys(monthOfficeCounts[month]).forEach((office, index) => {
+        if (!officeColors[office]) {
+          const color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
+            Math.random() * 256
+          )}, ${Math.floor(Math.random() * 256)}, 0.2)`;
+          officeColors[office] = color;
+        }
+      });
+    });
+
+    // Prepare datasets for each office
+    Object.keys(officeColors).forEach((office) => {
+      const data = sortedMonths.map(
+        (month) => monthOfficeCounts[month][office] || 0
+      );
+      datasets.push({
+        label: office,
+        data,
+        backgroundColor: officeColors[office],
+        borderColor: officeColors[office].replace("0.2", "1"),
+        borderWidth: 1,
+      });
+    });
+
+    return {
+      labels,
+      datasets,
+    };
+  };
+
+  const prepareTotalVisitorsByOfficeData = () => {
+    const officeCounts = {};
+
+    members.forEach((member) => {
+      const office = member.office;
+      officeCounts[office] = (officeCounts[office] || 0) + 1;
+    });
+
+    const labels = Object.keys(officeCounts);
+    const data = labels.map((office) => officeCounts[office]);
+
+    return {
+      labels,
+      datasets: [
+        {
+          data,
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    };
+  };
 
   const handleStatisticsToggle = (e) => {
     setShowStatistics(e.target.checked);
+    if (!e.target.checked) {
+      setMonthlyVisitorsByOfficeData([]);
+      setTotalVisitorsByOfficeData([]);
+    } else {
+      setMonthlyVisitorsByOfficeData(prepareMonthlyVisitorsByOfficeData());
+      setTotalVisitorsByOfficeData(prepareTotalVisitorsByOfficeData());
+    }
   };
 
   return (
@@ -302,7 +393,14 @@ const AdminDashboard = () => {
           <VisitsChart data={weeklyVisitsData} />
           <VisitorMemberComparisonChart data={visitorMemberComparisonData} />
           <MonthlyStatsChart data={monthlyStatsData} />
-          <AverageVisitsPerDay average={averageVisitsPerDay} />
+          <MonthlyVisitorsByOfficeChart
+            data={monthlyVisitorsByOfficeData}
+            title="Visiteurs mensuels par bureau"
+          />
+          <TotalVisitorsByOfficePieChart
+            data={totalVisitorsByOfficeData}
+            title="Total visiteurs par bureau (en pie chart)"
+          />
         </div>
       ) : (
         <table className="visits-table">
