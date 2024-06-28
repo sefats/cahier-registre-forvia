@@ -8,13 +8,14 @@ const MemberLogin = () => {
   const [email, setEmail] = useState("");
   const [userDetails, setUserDetails] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // État pour gérer le bouton de soumission
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://fraljapp0002:5000/api/ldap/search", {
+      const response = await fetch("http://localhost:5000/api/ldap/search", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,6 +35,7 @@ const MemberLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true); // Désactiver le bouton lors de l'envoi
     const formData = new FormData(e.target);
     const memberData = {
       sn: formData.get("sn"),
@@ -48,7 +50,7 @@ const MemberLogin = () => {
     };
 
     try {
-      const response = await fetch("http://fraljapp0002:5000/api/members/add", {
+      const response = await fetch("http://localhost:5000/api/members/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,9 +66,11 @@ const MemberLogin = () => {
         }, 2000);
       } else {
         console.error("Failed to add member visit");
+        setIsSubmitting(false); // Réactiver le bouton si l'ajout échoue
       }
     } catch (error) {
       console.error("Error:", error);
+      setIsSubmitting(false); // Réactiver le bouton en cas d'erreur
     }
   };
 
@@ -89,13 +93,13 @@ const MemberLogin = () => {
             />
           </div>
           <button type="submit" className="member-search-button">
-          {t("search")}
+            {t("search")}
           </button>
         </form>
         {userDetails && (
           <form className="member-details-form" onSubmit={handleSubmit}>
             <div className="member-form-group">
-              <label>{t("name")} </label>
+              <label>{t("name")}</label>
               <input type="text" name="sn" value={userDetails.sn} readOnly />
             </div>
             <div className="member-form-group">
@@ -155,8 +159,12 @@ const MemberLogin = () => {
               <label>{t("end_time")}</label>
               <input type="datetime-local" name="endTime" required />
             </div>
-            <button type="submit" className="member-submit-button">
-            {t("save_visit")}
+            <button
+              type="submit"
+              className="member-submit-button"
+              disabled={isSubmitting} // Désactiver le bouton pendant l'envoi
+            >
+              {t("save_visit")}
             </button>
           </form>
         )}

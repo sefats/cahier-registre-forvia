@@ -1,85 +1,217 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #f7f7f7;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .create-user-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 4vh 5vw;
-  margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4vh 5vw;
+    margin-top: 10%;
 }
 
 .form-content {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .create-user-form {
-  width: 50%;
-  background-color: white;
-  padding: 4vh 5vw;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+    width: 50%;
+    max-width: 500px;
+    background-color: white;
+    padding: 4vh 5vw;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
 
 .create-user-form:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .create-user-form h2 {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 4vh;
-  font-size: 3vh;
-  color: #0B2FED;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 4vh;
+    font-size: 3vh;
+    color: #0B2FED;
 }
 
 .form-group {
-  width: 100%;
-  margin-bottom: 3vh;
+    width: 100%;
+    margin-bottom: 3vh;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 1vh;
-  font-weight: 700;
-  font-size: 2vh;
-  color: #333;
+    display: block;
+    margin-bottom: 1vh;
+    font-weight: 700;
+    font-size: 2vh;
+    color: #333;
 }
 
 .form-group input {
-  width: 100%;
-  padding: 1.5vh;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 2vh;
-  transition: border-color 0.3s;
+    width: 100%;
+    padding: 1.5vh;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 2vh;
+    transition: border-color 0.3s;
 }
 
 .form-group input:focus {
-  border-color: #0B2FED;
-  outline: none;
+    border-color: #0B2FED;
+    outline: none;
 }
 
 .submit-button {
-  width: 100%;
-  padding: 2vh;
-  background-color: #0B2FED;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 2.5vh;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    width: 100%;
+    padding: 2vh;
+    background-color: #0B2FED;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 2.5vh;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #0033A0;
+    background-color: #0033A0;
+}
+
+/* Additional styles for better visual presentation */
+.form-group input::placeholder {
+    color: #999;
+    font-size: 1.8vh;
+}
+
+.create-user-form h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: #0B2FED;
+    margin: 2vh auto 0;
+}
+
+.users-list {
+    width: 80%;
+    margin: 4vh auto;
+    background-color: white;
+    padding: 4vh 5vw;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.users-list h2 {
+    text-align: center;
+    margin-bottom: 4vh;
+    font-size: 3vh;
+    color: #0B2FED;
+}
+
+.users-list table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 2vh;
+}
+
+.users-list th,
+.users-list td {
+    border: 1px solid #ccc;
+    padding: 1vh 2vw;
+    text-align: left;
+}
+
+.users-list th {
+    background-color: #0B2FED;
+    color: white;
+    font-weight: 700;
+}
+
+.users-list td {
+    background-color: #f7f7f7;
+}
+
+.users-list button {
+    padding: 1vh 2vw;
+    margin-right: 1vw;
+    background-color: #0B2FED;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.users-list button:hover {
+    background-color: #0033A0;
+}
+
+@media (max-width: 768px) {
+
+    .create-user-form,
+    .users-list {
+        width: 90%;
+        padding: 4vh 3vw;
+    }
+
+    .create-user-form h2,
+    .users-list h2 {
+        font-size: 2.5vh;
+    }
+
+    .form-group label,
+    .form-group input,
+    .submit-button,
+    .users-list table,
+    .users-list th,
+    .users-list td,
+    .users-list button {
+        font-size: 1.8vh;
+    }
+}
+
+.delete-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.popup-content p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.popup-content button {
+    background-color: #0B2FED;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 14px;
+}
+
+.popup-content button:hover {
+    background-color: #0033A0;
 }

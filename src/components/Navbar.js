@@ -23,10 +23,10 @@ const Navbar = () => {
                 {isLoggedIn ? (
                     <>
                         <button className="logout-button" onClick={handleLogout}>{t('logout')}</button>
-                        {userRole === 'admin' && (
-                            <button className="admin-button" onClick={() => navigate('/admin')}>Admin</button>
+                        {(userRole === 'admin' || userRole ==='super-admin') && (
+                            <button className="admin-button" onClick={() => navigate('/admin')}>{t('dashboard')}</button>
                         )}
-                        {userRole === 'admin' && (
+                        {userRole === 'super-admin' && (
                             <Link to="/create-user">
                                 <button className="login-button">{t('add_user')}</button>
                             </Link>
@@ -45,3 +45,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+

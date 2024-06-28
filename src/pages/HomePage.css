@@ -14,8 +14,6 @@ body {
     overflow: hidden;
 }
 
-
-
 .home-container::before {
     content: '';
     position: absolute;
@@ -23,7 +21,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('/src/images/background-forvia.jpg') no-repeat center center fixed; 
+    background: url('/src/images/background-forvia.jpg') no-repeat center center fixed;
     background-size: cover;
     background-position: center;
     opacity: 0.3;
@@ -59,7 +57,7 @@ body {
 
 .logo {
     height: 7vh;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .language-section {
@@ -165,7 +163,6 @@ body {
     margin-top: 11vh;
 }
 
-
 .section h2 {
     color: #0B2FED;
     max-width: 70vh;
@@ -180,7 +177,8 @@ body {
     margin: 7vh 0 3vh 1vw;
 }
 
-.visitor-button, .member-button {
+.visitor-button,
+.member-button {
     background-color: #0B2FED;
     color: white;
     border: none;
@@ -194,7 +192,8 @@ body {
     margin-left: 13vw;
 }
 
-.visitor-button:hover, .member-button:hover {
+.visitor-button:hover,
+.member-button:hover {
     background-color: #0033A0;
 }
 
@@ -203,4 +202,27 @@ body {
     background-color: #0B2FED;
     height: 80%;
     align-self: center;
+}
+
+@media (max-width: 768px) {
+
+    .header,
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .main-content {
+        padding: 2vh 3vw;
+    }
+
+    .section {
+        margin: 2vh 0;
+    }
+
+    .visitor-button,
+    .member-button {
+        margin: 2vh auto;
+    }
 }

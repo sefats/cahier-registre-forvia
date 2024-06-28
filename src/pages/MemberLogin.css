@@ -156,7 +156,6 @@ body {
     transition: background-color 0.3s ease;
     margin-top: 2vh;
     margin-bottom: 5vh;
-
 }
 
 .member-search-button:hover, .member-submit-button:hover {
@@ -179,4 +178,25 @@ body {
 
 .member-popup:hover {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .login-button, .logout-button, .admin-button {
+    font-size: 20px;
+    padding: 8px 20px;
+  }
+
+  .member-form-content {
+    padding: 4vh 3vw;
+  }
+
+  .member-search-form h2, .member-details-form h2 {
+    font-size: 2.5vh;
+  }
+
+  .member-form-group label,
+  .member-form-group input,
+  .member-search-button, .member-submit-button {
+    font-size: 1.8vh;
+  }
 }

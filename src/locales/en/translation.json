@@ -2,10 +2,10 @@
     "welcome": "Welcome",
     "login": "Login",
     "logout": "Logout",
-    "admin_dashboard": "Admin Dashboard",
+    "admin_dashboard": "Dashboard",
     "visitor_registration": "Visitor Registration",
-    "member_registration": "Member Registration",
-    "search_member": "Search Member",
+    "member_registration": "Employee Registration",
+    "search_member": "Search Employee",
     "search": "Search",
     "name": "Name",
     "firstname": "First Name",
@@ -19,12 +19,12 @@
     "success_message": "Visitor added successfully!",
     "delete_confirmation": "Are you sure you want to delete this visit?",
     "visitor": "Visitor",
-    "member": "Member",
+    "member": "Employee",
     "sidentifier": "Login",
     "adresse-email": "E-mail address",
     "poste":"Description",
     "office": "Office",
-    "success_membre": "Member added successfully!",
+    "success_membre": "Employee added successfully!",
     "all": "All",
     "yes":"Yes",
     "no":"No",
@@ -35,7 +35,17 @@
     "add_user":"New user",
     "username":"Username",
     "password":"Password",
-    "create_user":"Create a user"
+    "create_user":"Create a user",
+    "users_list": "Users list",
+    "update_password":"Update password",
+    "dashboard":"Dashboard",
+    "employé":"Employee",
+    "confirm_delete":"Are you sure you want to delete this user ?"
+
+
+
+
+
 
 
 

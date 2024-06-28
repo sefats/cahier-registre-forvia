@@ -1,7 +1,8 @@
 const Visitor = require('../models/Visitor');
 const axios = require('axios');
-const { sendZPLToPrinter } = require('./printController');
+const { generateAndPrintPDF } = require('./printControllerPDF');
 
+// Ajouter un visiteur
 exports.addVisitor = async (req, res) => {
   const { name, firstname, email, phone, entreprise, contactPerson, startTime, endTime } = req.body;
   try {
@@ -15,7 +16,22 @@ exports.addVisitor = async (req, res) => {
       startTime: new Date(startTime),
       endTime: new Date(endTime)
     });
-    res.status(201).json({ message: 'Visitor added and label printed successfully', visitor });
+    
+    // Generate and print the PDF
+    await generateAndPrintPDF({
+      body: {
+        name,
+        firstname,
+        email,
+        phone,
+        entreprise,
+        contactPerson,
+        startTime,
+        endTime
+      }
+    });
+
+    res.status(201).json({ message: 'Visitor added successfully', visitor });
   } catch (error) {
     console.error('Error adding visitor:', error);
     res.status(500).json({ error: error.message });

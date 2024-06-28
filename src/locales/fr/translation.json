@@ -2,10 +2,10 @@
     "welcome": "Bienvenue",
     "login": "Se connecter",
     "logout": "Déconnexion",
-    "admin_dashboard": "Tableau de bord Admin",
+    "admin_dashboard": "Tableau de bord",
     "visitor_registration": "Enregistrement Visiteur",
-    "member_registration": "Enregistrement Membre",
-    "search_member": "Recherche Membre",
+    "member_registration": "Enregistrement Employé",
+    "search_member": "Recherche Employé",
     "search": "Rechercher",
     "name": "Nom",
     "firstname": "Prénom",
@@ -19,12 +19,12 @@
     "success_message": "Visiteur ajouté avec succès!",
     "delete_confirmation": "Êtes-vous sûr de vouloir supprimer cette visite?",
     "visitor": "Visiteur",
-    "member": "Membre",
+    "member": "Employé",
     "sidentifier": "S'identifier",
     "adresse-email": "Adresse e-mail",
     "poste":"Poste",
     "office": "Bureau",
-    "success_membre": "Membre ajouté avec succès!",
+    "success_membre": "Employé ajouté avec succès!",
     "all": "Tout",
     "yes":"Oui",
     "no":"Non",
@@ -35,7 +35,12 @@
     "add_user":"Ajouter utilisateur",
     "username":"Identifiant",
     "password":"Mot de passe",
-    "create_user":"Créer un utilisateur"
+    "create_user":"Créer un utilisateur",
+    "users_list": "Liste des utilisateurs",
+    "update_password":"Modifier mot de passe",
+    "dashboard":"Tableau de bord",
+    "employé":"Employé",
+    "confirm_delete":"Êtes-vous sûr de vouloir supprimer l'utilisateur ?"
 
 
 

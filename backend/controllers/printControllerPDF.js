@@ -22,26 +22,26 @@ exports.generateAndPrintPDF = async (req, res) => {
     const { width, height } = page.getSize();
 
     // Ajouter l'image au document
-    const imagePath = path.join(__dirname, "./forviafaurecia-logo.png");
+    const imagePath = path.join(__dirname, "forviafaurecia-logo.png");
     const imageBytes = fs.readFileSync(imagePath);
     const pngImage = await pdfDoc.embedPng(imageBytes);
-    const pngDims = pngImage.scale(0.5);
+    const pngDims = pngImage.scale(0.25); // Réduire la taille du logo
 
-    // Positionner l'image
+    // Positionner l'image en haut à droite
     page.drawImage(pngImage, {
-      x: width / 2 - pngDims.width / 2,
+      x: width - pngDims.width - 10,
       y: height - pngDims.height - 10,
       width: pngDims.width,
       height: pngDims.height,
     });
 
-    // Ajouter du texte au document
-    const fontSizeLarge = 18;
-    const fontSize = 11;
-    const lineHeight = fontSize * 2;
-    const marginXLeft = 40;
-    const marginXRight = 170;
-    let currentY = height - pngDims.height - 50;
+    // Ajouter le texte de bienvenue
+    const fontSizeLarge = 22;
+    const fontSize = 14;
+    const lineHeight = fontSize * 1.5;
+    const marginXLeft = 15;
+    const marginXRight = width / 2 + 10;
+    let currentY = height - 50;
 
     const drawText = (text, x, y, size = fontSize) => {
       page.drawText(text, {
@@ -51,6 +51,17 @@ exports.generateAndPrintPDF = async (req, res) => {
         color: rgb(0, 0, 0),
       });
     };
+
+    // Texte de bienvenue
+    const welcomeText = "Welcome to Allenjoie FCM";
+    const welcomeWidth = welcomeText.length * (fontSizeLarge * 0.5);
+    drawText(
+      welcomeText,
+      width / 2 - welcomeWidth / 2,
+      currentY - 20,
+      fontSizeLarge
+    );
+    currentY -= lineHeight * 3;
 
     // Nom et prénom en haut au centre
     const nameText = `${firstname} ${name}`;
@@ -100,16 +111,10 @@ exports.generateAndPrintPDF = async (req, res) => {
 
     // Supprimer le fichier temporaire
     fs.unlinkSync(pdfPath);
-
-    res.json({ message: "Impression réussie" });
   } catch (err) {
     console.error(
       "Erreur lors de la génération ou de l'impression du PDF :",
       err
     );
-    res.status(500).json({
-      error: "Erreur lors de la génération ou de l'impression du PDF",
-      details: err.message,
-    });
   }
 };

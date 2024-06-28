@@ -36,9 +36,9 @@ const AdminDashboard = () => {
 
   const fetchVisitors = async () => {
     try {
-      const response = await fetch("http://fraljapp0002:5000/api/visitors");
+      const response = await fetch("http://localhost:5000/api/visitors");
       const data = await response.json();
-      setVisitors(data);
+      setVisitors(data.map((visitor) => ({ ...visitor, type: "visitor" })));
     } catch (error) {
       console.error("Error fetching visitors:", error);
     }
@@ -46,9 +46,9 @@ const AdminDashboard = () => {
 
   const fetchMembers = async () => {
     try {
-      const response = await fetch("http://fraljapp0002:5000/api/members");
+      const response = await fetch("http://localhost:5000/api/members");
       const data = await response.json();
-      setMembers(data);
+      setMembers(data.map((member) => ({ ...member, type: "member" })));
     } catch (error) {
       console.error("Error fetching members:", error);
     }
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
 
   const handleDeleteVisitor = async (id) => {
     try {
-      const response = await fetch(`http://fraljapp0002:5000/api/visitors/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/visitors/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {
@@ -72,7 +72,7 @@ const AdminDashboard = () => {
 
   const handleDeleteMember = async (id) => {
     try {
-      const response = await fetch(`http://fraljapp0002:5000/api/members/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/members/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {
@@ -126,13 +126,9 @@ const AdminDashboard = () => {
       (selectedTitle === "all" || member.title === selectedTitle)
   );
 
-  const sortedVisitors = [...filteredVisitors].sort((a, b) => {
-    return sortField === "startTime" || sortField === "endTime"
-      ? compareDates(a, b, sortField)
-      : compareValues(a, b, sortField);
-  });
+  const combinedData = [...filteredVisitors, ...filteredMembers];
 
-  const sortedMembers = [...filteredMembers].sort((a, b) => {
+  const sortedData = [...combinedData].sort((a, b) => {
     return sortField === "startTime" || sortField === "endTime"
       ? compareDates(a, b, sortField)
       : compareValues(a, b, sortField);
@@ -140,10 +136,10 @@ const AdminDashboard = () => {
 
   const displayData =
     filter === "visitors"
-      ? sortedVisitors
+      ? sortedData.filter((data) => data.type === "visitor")
       : filter === "members"
-      ? sortedMembers
-      : [...sortedVisitors, ...sortedMembers];
+      ? sortedData.filter((data) => data.type === "member")
+      : sortedData;
 
   const handleDeleteClick = (entry) => {
     setDeleteTarget(entry);
@@ -151,7 +147,7 @@ const AdminDashboard = () => {
   };
 
   const confirmDelete = () => {
-    if (deleteTarget.name) {
+    if (deleteTarget.type === "visitor") {
       handleDeleteVisitor(deleteTarget.id);
     } else {
       handleDeleteMember(deleteTarget.id);
@@ -208,7 +204,7 @@ const AdminDashboard = () => {
     const memberCount = filter !== "visitors" ? members.length : 0;
 
     return {
-      labels: ["Visiteurs externes", "Membres"],
+      labels: ["Visiteurs externes", "Employés"],
       datasets: [
         {
           data: [visitorCount, memberCount],
@@ -369,7 +365,7 @@ const AdminDashboard = () => {
         <select onChange={handleFilterChange} value={filter}>
           <option value="all">{t("all")}</option>
           <option value="visitors">{t("visitor")}</option>
-          <option value="members">{t("member")}</option>
+          <option value="members">{t("employé")}</option>
         </select>
         {!showStatistics && (
           <input

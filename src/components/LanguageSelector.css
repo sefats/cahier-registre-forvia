@@ -1,13 +1,13 @@
 .language-section {
     display: flex;
     align-items: center;
-    font-size: 1vw; 
+    font-size: 1vw;
     color: black;
 }
 
 .location-text {
     font-weight: 700;
-    margin-right: 5vw; 
+    margin-right: 5vw;
 }
 
 .language-selector {
@@ -75,4 +75,22 @@
 
 .dropdown-menu li:hover {
     background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+    .language-section {
+        font-size: 3vw;
+    }
+
+    .selected-language {
+        font-size: 4vw;
+    }
+
+    .arrow {
+        font-size: 3.5vw;
+    }
+
+    .dropdown-menu li {
+        font-size: 3vw;
+    }
 }

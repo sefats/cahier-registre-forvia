@@ -3,7 +3,13 @@ const router = express.Router();
 const ldap = require("ldapjs");
 
 const ldapClient = ldap.createClient({
-  url: 'ldap://10.60.194.91:389',
+  url: "ldap://10.60.194.91:389",
+});
+
+// Gestion des erreurs globales du client LDAP
+ldapClient.on("error", (err) => {
+  console.error("LDAP client error:", err);
+  // Vous pouvez ajouter une logique de reconnexion ou de gestion des erreurs ici
 });
 
 const adminDN = "7FRALJRECEPTION@ls.ege.ds";
@@ -61,6 +67,5 @@ router.post("/search", (req, res) => {
     });
   });
 });
-
 
 module.exports = router;

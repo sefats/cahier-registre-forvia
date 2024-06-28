@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "./VisitorForm.css";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const VisitorForm = () => {
   const { t } = useTranslation();
@@ -18,6 +18,7 @@ const VisitorForm = () => {
   });
 
   const [showPopup, setShowPopup] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // État pour gérer le bouton de soumission
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,8 +27,9 @@ const VisitorForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true); // Désactiver le bouton lors de l'envoi
     try {
-      const response = await fetch("http://fraljapp0002:5000/api/visitors/add", {
+      const response = await fetch("http://localhost:5000/api/visitors/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -40,42 +42,43 @@ const VisitorForm = () => {
         }, 2000);
       } else {
         console.error("Failed to add visitor");
+        setIsSubmitting(false); // Réactiver le bouton si l'ajout échoue
       }
     } catch (error) {
       console.error("Error:", error);
+      setIsSubmitting(false); // Réactiver le bouton en cas d'erreur
     }
   };
 
   return (
-  
     <div className="visitor-form-container">
       <Navbar />
       <div className="nav-divider"></div>
       <form className="visitor-form" onSubmit={handleSubmit}>
-        <h2>{t('visitor_registration')}</h2>
+        <h2>{t("visitor_registration")}</h2>
         <div className="form-group">
-        <label>{t('name')}</label>
+          <label>{t("name")}</label>
           <input
             type="text"
             name="name"
-            placeholder={t('name')}
+            placeholder={t("name")}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-        <label>{t('firstname')}</label>
+          <label>{t("firstname")}</label>
           <input
             type="text"
             name="firstname"
-            placeholder={t('firstname')}
+            placeholder={t("firstname")}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-        <label>{t('email')}</label>
-                  <input
+          <label>{t("email")}</label>
+          <input
             type="email"
             name="email"
             placeholder="Email"
@@ -84,63 +87,62 @@ const VisitorForm = () => {
           />
         </div>
         <div className="form-group">
-        <label>{t('phone')}</label>
+          <label>{t("phone")}</label>
           <input
             type="text"
             name="phone"
-            placeholder={t('phone')}
+            placeholder={t("phone")}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-        <label>{t('company')}</label>
+          <label>{t("company")}</label>
           <input
             type="text"
             name="entreprise"
-            placeholder={t('company')}
+            placeholder={t("company")}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-        <label>{t('contact_person')}</label>
+          <label>{t("contact_person")}</label>
           <input
             type="text"
             name="contactPerson"
-            placeholder={t('contact_person')}
+            placeholder={t("contact_person")}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          
-        <label>{t('start_time')}</label>
+          <label>{t("start_time")}</label>
           <input
             type="datetime-local"
             name="startTime"
-            placeholder={t('start_time')}
+            placeholder={t("start_time")}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-        <label>{t('end_time')}</label>
+          <label>{t("end_time")}</label>
           <input
             type="datetime-local"
             name="endTime"
-            placeholder={t('end_time')}
+            placeholder={t("end_time")}
             onChange={handleChange}
             required
           />
         </div>
-        <button type="submit" className="submit-button">
-        {t('save_visit')}
+        <button type="submit" className="submit-button" disabled={isSubmitting}>
+          {t("save_visit")}
         </button>
       </form>
       {showPopup && (
         <div className="popup">
-          <p>{t('success_message')}</p>
+          <p>{t("success_message")}</p>
         </div>
       )}
     </div>

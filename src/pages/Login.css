@@ -3,8 +3,7 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background: url('/src/images/background-forvia.jpg') no-repeat center center fixed; 
-    
+    background: url('/src/images/background-forvia.jpg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
 }
@@ -16,7 +15,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.8); 
+    background: rgba(255, 255, 255, 0.8);
     z-index: -1;
 }
 
@@ -34,7 +33,7 @@ body::before {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-top: 15%; 
+    margin-top: 15%;
     margin-left: 10%;
 }
 
@@ -43,7 +42,7 @@ body::before {
     text-align: left;
     margin-left: auto;
     margin-right: auto;
-    width: 90%; 
+    width: 90%;
 }
 
 .form-group label {
@@ -70,7 +69,7 @@ body::before {
 }
 
 .submit-button {
-    width: 90%; 
+    width: 90%;
     padding: 15px;
     background-color: #0B2FED;
     color: white;
@@ -87,4 +86,17 @@ body::before {
 
 .submit-button:hover {
     background-color: #0033A0;
+}
+
+@media (max-width: 768px) {
+    .login-form {
+        width: 90%;
+        margin: 10%;
+    }
+
+    .form-group label,
+    .form-group input,
+    .submit-button {
+        font-size: 16px;
+    }
 }
